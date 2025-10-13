@@ -8,7 +8,10 @@
 .explore-menu h1
 {
     color: #262626;
-    font-weight: 500 ;
+    font-weight: 400 ;
+    text-decoration: underline;
+font-family:cursive;
+text-decoration-thickness: 2px;
 }
 
 .explore-menu-text
@@ -24,7 +27,7 @@
     align-items: center;
     gap: 30px;
     text-align:center;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
     overflow-x: scroll;
 
 }
@@ -57,4 +60,16 @@ border-radius: 50%;
 .active
 {
     border: 2px solid rgb(99, 99, 212);
+}
+
+@media (max-width:1050px) {
+    .explore-menu-text
+    {
+        max-width: 100%;
+        font-size: 16px;
+    }
+    .explore-menu-list-item p
+    {
+        font-size: 16px;
+    }
 }

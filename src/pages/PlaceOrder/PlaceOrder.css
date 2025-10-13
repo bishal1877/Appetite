@@ -1,0 +1,65 @@
+.order
+{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 12vw;
+    margin-top: 100px;
+}
+
+.order-left
+{
+    width: 100%;
+}
+
+.order-left .title
+{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 50px;
+    font-family: cursive;
+}
+
+.order-left input
+{
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 10px;
+    border :1px solid #c5c5c5;
+    border-radius: 4px;
+    outline-color: rgb(251, 41, 41);
+}
+
+.order-left .multifield
+{
+    display: flex;
+    gap: 10px;
+}
+
+.order-right
+{
+    width: 100%;
+    max-width: max(40%,500px);
+margin-top: 20px;
+}
+
+.order .carttotal button
+{
+margin-top: 30px;
+}
+
+.carttotal h3
+{
+    font-family: cursive;
+}
+
+@media (max-width:480px) {
+    .order
+    {
+        flex-direction: column;
+    }
+    .order-left
+    {
+        width: 100%;
+    }
+}

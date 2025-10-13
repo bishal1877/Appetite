@@ -1,0 +1,25 @@
+.appdown
+{
+    margin: auto auto;
+    margin-top: 100px;
+    font-size: 3vw;
+    text-align: center;
+    font-weight: 500;
+}
+.appdown-plat
+{
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    margin-top: 40px;
+}
+.appdown-plat img
+{
+    max-width: 180px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.appdown-plat img:hover
+{
+    transform: scale(1.05);
+}

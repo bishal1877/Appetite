@@ -1,7 +1,8 @@
 .header
 {
     height: 34vw;
-    margin: 34px auto;
+    width:  74vw;
+    margin: 24px auto;
         background: url('\header_img.png') ;
 background-size:contain;
 background-repeat: no-repeat;
@@ -20,9 +21,9 @@ background-repeat: no-repeat;
     animation: fadeIn 2s;
 }
 
-.header-content h2{
+.header-content h3{
     color: whitesmoke;
-    font-size: 4.5vw;
+    font-size: 3.5vw;
 }
 
 .header-content p
@@ -40,4 +41,27 @@ background-repeat: no-repeat;
     font-size: 1vw;
     border-radius: 50px;
 
+}
+
+@media (max-width:1050px) {
+    
+    .header-content{
+        max-width: 45%;
+        bottom: 20%;
+    }
+}
+@media (max-width:750px) {
+ 
+    .header-content {
+        max-width: 50%;
+        bottom: 20%;
+    }
+    .header-content p
+    {
+        display: none;
+    }
+    .header-content button
+    {
+        padding: 1vw 2.3vw;
+    }
 }
