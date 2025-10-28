@@ -148,5 +148,8 @@ border-radius: 4px;
 .carttotal button{
     width: 20vw;
 }
-
+.cartitem-title
+{
+    font-size: 2.4vw;
+}
 }

@@ -21,7 +21,7 @@ const {food_list}=useContext(Storecontext);
 return (
   <Fooditem
     key={index}
-    id={item._id}
+    id={item.id}
     name={item.name}
     description={item.description}
     price={item.price}

@@ -10,7 +10,7 @@ const {gettotalamt}=useContext(Storecontext);
 let total=gettotalamt();
 
   return (
-    <div>
+    <div >
       <form className="order">
         <div className="order-left">
           <p className="title">Delivery Information</p>

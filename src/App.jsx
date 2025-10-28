@@ -14,18 +14,18 @@ const [showlogin,setshowlogin]=useState(false)
 
   return (
     <Router>
-      {showlogin ? <Login setshowlogin={setshowlogin} /> : <></>}
-      <div className="app">
-        <Storecontextprovider>
+      <Storecontextprovider>
+        {showlogin ? <Login setshowlogin={setshowlogin} /> : <></>}
+        <div className="app">
           <Navbar setshowlogin={setshowlogin} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<PlaceOrder />} />
           </Routes>
-        </Storecontextprovider>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+      </Storecontextprovider>
     </Router>
   );
 }

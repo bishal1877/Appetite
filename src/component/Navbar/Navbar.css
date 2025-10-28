@@ -45,6 +45,53 @@
 padding: 10px 25px;
 }
 
+.navprofile
+{
+   position: relative; 
+cursor: pointer;
+}
+
+.navprofile-dropdown
+{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navprofile:hover .navprofile-dropdown
+{
+display: flex;
+flex-direction: column;
+gap: 0;
+background-color:ghostwhite;
+padding: 8px 8px;
+border-radius: 4px ;
+border: 1px solid tomato;
+list-style: none;
+}
+.navprofile-dropdown hr 
+{
+    margin: 7px 0px;
+}
+.navprofile-dropdown li
+{
+    display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+margin-bottom: 0px;
+}
+
+.navprofile-dropdown li:hover
+{
+    color: tomato;
+   
+}
+
+.navprofile-dropdown img
+{
+    width:20px;
+}
 .active
 {
 padding: 1px;
@@ -55,7 +102,10 @@ border-radius: 50px;
 .navbar-search-icon
 {
     position: relative;
-
+}
+.navbar-search-icon img
+{
+    width: 40px;
 }
 .navbar-search-icon .dot 
 {
@@ -64,8 +114,8 @@ border-radius: 50px;
     min-height: 7px;
 background-color: tomato;
 border-radius: 5px;
-top: -10px;
-left: 20px;
+top: -2px;
+left: 30px;
 }
 @media (max-width:900px) {
     .navbar .logo {
