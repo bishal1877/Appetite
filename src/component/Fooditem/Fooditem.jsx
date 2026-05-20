@@ -10,16 +10,39 @@ const {cartitem,addtocart,removefromcart,url,token}=useContext(Storecontext);
   return (
     <div className="fooditem">
       <div className="fooditem-img-container">
-        <img className="fooditem-img" src={url+"/images/"+image} alt="" />
-     {  
-      token?
-      !cartitem[id]? <img className='add' onClick={()=>{addtocart(id)}} src={assets.add_icon_white} alt="" />:
-       <div className='fooditem-counter'>
-        <img src={assets.remove_icon_red} onClick={()=>{removefromcart(id)}}  alt="" />
-         <p>{cartitem[id]}</p>
-         <img src={assets.add_icon_green} onClick={()=>{addtocart(id)}} alt="" />
-         </div>:""
-}
+        <img className="fooditem-img" src={url + "/images/" + image} alt="" />
+        {token ? (
+          !cartitem[id] ? (
+            <img
+              className="add"
+              onClick={() => {
+                addtocart(id, price, name);
+              }}
+              src={assets.add_icon_white}
+              alt=""
+            />
+          ) : (
+            <div className="fooditem-counter">
+              <img
+                src={assets.remove_icon_red}
+                onClick={() => {
+                  removefromcart(id);
+                }}
+                alt=""
+              />
+              <p>{cartitem[id].quantity}</p>
+              <img
+                src={assets.add_icon_green}
+                onClick={() => {
+                  addtocart(id, price, name);
+                }}
+                alt=""
+              />
+            </div>
+          )
+        ) : (
+          ""
+        )}
       </div>
       <div className="fooditem-info">
         <div className="fooditem-name-rating">
@@ -27,7 +50,7 @@ const {cartitem,addtocart,removefromcart,url,token}=useContext(Storecontext);
           <img src={assets.rating_starts} alt="" />
         </div>
         <p className="fooditem-description">{description}</p>
-        <p className="fooditem-price">${price}</p>
+        <p className="fooditem-price">₹{price}</p>
       </div>
     </div>
   );

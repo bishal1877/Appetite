@@ -21,20 +21,20 @@ let total=gettotalamt();
           <p>Price</p>
           <p>Quantity</p>
           <p>Total</p>
-          <p>Remove</p>
         </div>
         <br />
         <hr />
         {food_list.map((item, index) => {
-          if (cartitem[item.id] > 0) {
+          {console.log(cartitem)}
+          if (cartitem[item.id] && cartitem[item.id].quantity > 0) {
             return (
               <div key={index}>
-                <div className="cartitem-title cartitem-item"  key={index} >
-                  <img src={url+"/images/"+item.image} alt="" />
+                <div className="cartitem-title cartitem-item" key={index}>
+                  <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>$ {item.price}</p>
-                  <p>{cartitem[item.id]}</p>
-                  <p>$ {item.price * cartitem[item.id]}</p>
+                  <p>{cartitem[item.id].quantity}</p>
+                  <p>$ {item.price * cartitem[item.id].quantity}</p>
                   {/* <p onClick={()=>removefromcart(item._id)} className='cross' >x</p> */}
                   <p className="cross" onClick={() => removefromcart(item.id)}>
                     <img src={assets.remove_icon_red} alt="" />

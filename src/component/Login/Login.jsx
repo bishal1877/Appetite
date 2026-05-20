@@ -32,7 +32,6 @@ else
 }
 console.log('dvnhdby');
 const response=await axios.post(newurl,data);
-console.log(response);
 if(response.data.success)
 {
 settoken(response.data.token);
@@ -67,7 +66,7 @@ else
             <></>
           )}
           <input name='email' value={data.email} onChange={cnghandler} type="email" placeholder="Your email" required />
-          <input name='password' value={data.password} onChange={cnghandler} type="password" placeholder="password" required />
+          <input name='password' value={data.password} onChange={cnghandler} type="password" placeholder="password" required  />
         </div>
         <button type='submit' >{currentstate == "Signup" ? "Create account" : "Login"}</button>
         <div className="login-condition">

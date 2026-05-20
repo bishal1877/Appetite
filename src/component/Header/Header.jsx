@@ -15,7 +15,6 @@ backgroundRepeat: `no-repeat`}}  >
             mission is to satisfy your cravings and elevate your dining
             experience.
           </p>
-          <button>View Menu</button>
         </div>
       </div>
   );

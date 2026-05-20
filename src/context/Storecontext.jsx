@@ -1,83 +1,106 @@
 import { Storecontext } from "./Store";
-import {  useEffect, useState } from "react";
-import axios from 'axios'
- const Storecontextprovider=(props)=>{
+import { useEffect, useState } from "react";
+import axios from "axios";
+const Storecontextprovider = (props) => {
+  const [cartitem, setcartitem] = useState({});
+  const [customerinfo, setcustomerinfo] = useState({});
+  const [food_list, setfood_list] = useState([]);
 
-const [cartitem,setcartitem]=useState({});
+  const url = "http://localhost:3000";
+  const [token, settoken] = useState("");
+  const fetchlist = async () => {
+    const response = await axios.get(url + "/api/food/list");
+    setfood_list(response.data.list);
+  };
 
-const [food_list, setfood_list]=useState([]);
+  const loadcart = async (token) => {
+    const response = await axios.post(
+      url + "/api/cart/get",
+      {},
+      { headers: { token: token } },
+    );
+    console.log(response.data.cartdata);
+    setcartitem(response.data.cartdata);
+  };
 
-const url = "https://appetite-back.onrender.com";
-const [token,settoken]=useState("");
-const fetchlist= async()=>{
-    const response=await axios.get(url+"/api/food/list");
-setfood_list(response.data.list);
-}
-
-const loadcart=async (token)=>{
-    console.log(response.data.cartdata, "djbfy");
-const response=await axios.post(url+"/api/cart/get",{},{headers:{token:token}});
-
-setcartitem(response.data.cartdata);
-}
-
-
-useEffect( ()=>{
-  
-const load= async()=>{
-    await fetchlist();
+  useEffect(() => {
+    const load = async () => {
+      await fetchlist();
       if (localStorage.getItem("token")) {
         settoken(localStorage.getItem("token"));
-      await loadcart(localStorage.getItem("token"));}
-}
-load();
-},[]);
-const addtocart=async (itemid)=>{
-if(!cartitem[itemid])
-{
-    setcartitem((prev)=>({...prev,[ itemid]:1}))
-}
-else
-{
-    setcartitem((prev)=>({...prev,[itemid]:prev[itemid]+1}))
-}
-await axios.post(url+'/api/cart/add',{itemid:itemid},{headers:{token:token}});
-}    
-
-const removefromcart=async (itemid)=>{
-    setcartitem((prev)=>({...prev,[itemid]:prev[itemid]-1}));
-    await axios.post(url+'/api/cart/remove',{itemid:itemid},{headers:{token:token}});
-}
-
-
-const gettotalamt=()=>{
-    let totalamt=0;
-    for(const item in cartitem)
-    {
-      
-    if(cartitem[item]>0)
-        {let iteminfo=food_list.find((product)=>product.id==item);
-        totalamt+=(iteminfo.price)*cartitem[iteminfo.id];}
+        await loadcart(localStorage.getItem("token"));
+      }
+    };
+    load();
+  }, []);
+  const addtocart = async (itemid, price,name) => {
+    if (!cartitem[itemid]) {
+      setcartitem((prev) => ({
+        ...prev,
+        [itemid]: { quantity: 1, price: price,name:name },
+      }));
+    } else {
+      setcartitem((prev) => ({
+        ...prev,
+        [itemid]: { ...prev[itemid], quantity: prev[itemid].quantity + 1 },
+      }));
     }
-return totalamt;
-}
+    await axios.post(
+      url + "/api/cart/add",
+      { itemid: itemid, price: price ,name:name},
+      { headers: { token: token } },
+    );
+  };
 
-const contextvalue={
-food_list,
-cartitem,
-setcartitem,
-addtocart,
-removefromcart,
-gettotalamt,
-url,
-token,
-settoken
+  const removefromcart = async (itemid) => {
+    setcartitem((prev) => {
+      const newCart = { ...prev };
+      if (newCart[itemid] && newCart[itemid].quantity > 1) {
+        newCart[itemid] = {
+          ...newCart[itemid],
+          quantity: newCart[itemid].quantity - 1,
+        };
+      } else {
+        delete newCart[itemid]; 
+      }
+      return newCart;
+    });
+    await axios.post(
+      url + "/api/cart/remove",
+      { itemid: itemid },
+      { headers: { token: token } },
+    );
+  };
+
+  const gettotalamt = () => {
+    let totalamt = 0;
+    for (const item in cartitem) {
+      if (cartitem[item].quantity > 0) {
+        let iteminfo = food_list.find((product) => product.id == item);
+        totalamt += iteminfo.price * cartitem[iteminfo.id].quantity;
+      }
     }
-    
-    return (
-        <Storecontext.Provider value={contextvalue}>
-            {props.children}
-        </Storecontext.Provider>
-    )
-}
+    return totalamt;
+  };
+
+  const contextvalue = {
+    food_list,
+    cartitem,
+    setcartitem,
+    addtocart,
+    removefromcart,
+    gettotalamt,
+    url,
+    token,
+    settoken,
+    customerinfo,
+    setcustomerinfo,
+  };
+
+  return (
+    <Storecontext.Provider value={contextvalue}>
+      {props.children}
+    </Storecontext.Provider>
+  );
+};
 export default Storecontextprovider;
