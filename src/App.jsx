@@ -16,8 +16,8 @@ const App = () => {
 const [showlogin,setshowlogin]=useState(false)
 
   return (
-    <Router>
-      <Storecontextprovider>
+    <Storecontextprovider>
+      <Router>
         {showlogin ? <Login setshowlogin={setshowlogin} /> : <></>}
         <div className="app">
           <Navbar setshowlogin={setshowlogin} />
@@ -26,12 +26,12 @@ const [showlogin,setshowlogin]=useState(false)
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<PlaceOrder />} />
             <Route path="/status" element={<Status />} />
-              <Route path="/complete" element={<Complete />} />
-            </Routes>
+            <Route path="/complete" element={<Complete />} />
+          </Routes>
         </div>
         <Footer />
-      </Storecontextprovider>
-    </Router>
+      </Router>
+    </Storecontextprovider>
   );
 }
 
