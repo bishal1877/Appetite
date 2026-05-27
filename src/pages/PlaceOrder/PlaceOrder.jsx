@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const PlaceOrder = () => {
-    const { gettotalamt,cartitem,customerinfo} = useContext(Storecontext);
+    const { url,gettotalamt,cartitem,customerinfo} = useContext(Storecontext);
 const [info, setinfo] = useState({
   email: "",
   ctry: "IND",
@@ -53,7 +53,7 @@ setinfo((prev)=>({
       >
         <form
           className="order"
-          action="http://localhost:3000/create-checkout-session"
+          action={`${url}+/create-checkout-session`}
           method="POST"
         >
           <input
