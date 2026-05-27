@@ -24,7 +24,8 @@ setinfo((prev)=>({
   };
 
   let total = gettotalamt();
-
+let newurl=url+"/create-checkout-session"
+console.log(newurl)
   return (
     <div
       style={{
@@ -53,7 +54,7 @@ setinfo((prev)=>({
       >
         <form
           className="order"
-          action={`${url}+/create-checkout-session`}
+          action={newurl}
           method="POST"
         >
           <input
