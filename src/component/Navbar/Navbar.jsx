@@ -1,23 +1,24 @@
-import React, { useContext, useState } from 'react'
-import './Navbar.css'
-import {Link, useNavigate} from 'react-router-dom';
-import { assets } from '../../assets/frontend_assets/assets'
-import { Storecontext } from '../../context/Store';
-const Navbar = ({setshowlogin}) => {
+import React, { useContext, useState } from "react";
+import "./Navbar.css";
+import { Link, useNavigate } from "react-router-dom";
+import { assets } from "../../assets/frontend_assets/assets";
+import { Storecontext } from "../../context/Store";
 
-const [menu,setmenu]= useState("home");
-const navigate=useNavigate();
-const {gettotalamt ,token ,settoken,setcartitem}=useContext(Storecontext);
-const logout=()=>{
-localStorage.removeItem("token");
-settoken("");
-setcartitem({});
-navigate("/");
-}
+const Navbar = ({ setshowlogin }) => {
+  const [menu, setmenu] = useState("home");
+  const navigate = useNavigate();
+  const { gettotalamt, token, settoken, setcartitem } =
+    useContext(Storecontext);
+  const logout = () => {
+    localStorage.removeItem("token");
+    settoken("");
+    setcartitem({});
+    navigate("/");
+  };
 
   return (
     <div className="navbar">
-      <Link to='/' >
+      <Link to="/">
         <img src={assets.logo} alt="" className="logo" />
       </Link>
       <ul className="navbar-menu">
@@ -64,21 +65,30 @@ navigate("/");
           <Link to="/cart">
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <div className={gettotalamt()>0?"dot":""}></div>
+          <div className={gettotalamt() > 0 ? "dot" : ""}></div>
         </div>
-        {!token?<button onClick={() => setshowlogin(true)}>Sign in</button>:
-        <div className='navprofile'>
-          <img src={assets.profile_icon} alt="" />
-        <ul className="navprofile-dropdown">
-          <li><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-          <hr />
-          <li onClick={logout} > <img src={assets.logout_icon} alt="" /> <p>Logout</p> </li>
-        </ul>
-        </div>
-        }
+        {!token ? (
+          <button onClick={() => setshowlogin(true)}>Sign in</button>
+        ) : (
+          <div className="navprofile">
+            <img src={assets.profile_icon} alt="" />
+            <ul className="navprofile-dropdown">
+              <li>
+                <img src={assets.bag_icon} alt="" />
+                <p>
+                  <Link to="/status">Orders</Link>
+                </p>
+              </li>
+              <hr />
+              <li onClick={logout}>
+                <img src={assets.logout_icon} alt="" /> <p>Logout</p>{" "}
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
-}
+};
 
-export default Navbar
+export default Navbar;

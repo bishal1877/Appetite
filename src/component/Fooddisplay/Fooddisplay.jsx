@@ -15,7 +15,7 @@ const {food_list}=useContext(Storecontext);
 </h2>
 <div className="fooddisplay-list">
     
-        {food_list.map((item,index)=>{
+        {food_list && food_list.map((item,index)=>{
           if(category=='All'||category===item.category)
           {
 return (

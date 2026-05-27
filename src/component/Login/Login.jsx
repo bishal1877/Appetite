@@ -7,7 +7,7 @@ import { assets } from '../../assets/frontend_assets/assets';
 const Login = ({setshowlogin}) => {
     const [currentstate,setcurrent]=useState("Login");
 
-const {url,settoken,setcartitem}=useContext(Storecontext);
+const {url,settoken,setcartitem,setcustomerinfo}=useContext(Storecontext);
 
     const [data,setdata]=useState({email:"",
       name:"",
@@ -39,6 +39,7 @@ localStorage.setItem("token",response.data.token);
 if(currentstate=="Login")
   setcartitem(response.data.cartdata);
 setshowlogin(false);
+setcustomerinfo(data.email)
 }
 else
 {

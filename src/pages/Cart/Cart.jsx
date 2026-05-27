@@ -25,7 +25,6 @@ let total=gettotalamt();
         <br />
         <hr />
         {food_list.map((item, index) => {
-          {console.log(cartitem)}
           if (cartitem[item.id] && cartitem[item.id].quantity > 0) {
             return (
               <div key={index}>

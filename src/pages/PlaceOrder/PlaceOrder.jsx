@@ -1,23 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import "./PlaceOrder.css";
 import { Storecontext } from "../../context/Store";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const [info, setinfo] = useState({
-    firstname: "a",
-    lastname: "b",
-    email: "c@gmail.com",
-    street: "df",
-    city: "df",
-    state: "hg",
-    pin: 345,
-    phone: "fgt",
-    ctry: "IND",
-  });
-  const { gettotalamt,cartitem} = useContext(Storecontext);
-let product=cartitem;
+    const { gettotalamt,cartitem,customerinfo} = useContext(Storecontext);
+const [info, setinfo] = useState({
+  email: "",
+  ctry: "IND",
+});
+useEffect(()=>{
+  if(typeof customerinfo != "object")
+setinfo((prev)=>({
+  ...prev,email:customerinfo
+}))
+},[customerinfo])
+
   const change = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -57,7 +56,6 @@ let product=cartitem;
           action="http://localhost:3000/create-checkout-session"
           method="POST"
         >
-          {console.table(product)}
           <input
             type="hidden"
             name="product"
@@ -84,6 +82,7 @@ let product=cartitem;
             </div>
 
             <input
+          readOnly
               value={info.email}
               onChange={change}
               name="email"
@@ -123,14 +122,14 @@ let product=cartitem;
                 type="number"
                 placeholder="Pin Code"
               />
-              <input type="text" placeholder="Country" value={info.ctry} />
+              <input type="text" placeholder="Country" value={info.ctry} readOnly />
             </div>
             <input
               required
               value={info.phone}
               onChange={change}
               name="phone"
-              type="text"
+              type="number"
               placeholder="Phone"
             />
             <button type="submit">Procced to payment</button>

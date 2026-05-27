@@ -1,9 +1,18 @@
 
 .statusitem-title {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 0.9fr 0.9fr 1fr 1.3fr;
+  grid-template-columns: 1fr 1fr  1fr 1fr;
   align-items: center;
   font-size: 1vw;
+}
+.statusitem
+{
+  margin-top: 3vh;
+}
+.sp
+{
+  display: flex;
+  justify-content: center;
 }
 
 .statusitem-item {
@@ -17,9 +26,9 @@
   object-position: center;
   border-radius: 50%;
 }
-.cart hr {
+.statusitem hr {
   height: 0.7px;
-  background-color: rgb(128, 128, 128);
+  background-color: rgb(198, 31, 31);
   border: none;
 }
 .statusitem-item .cross img {

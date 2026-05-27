@@ -6,7 +6,7 @@ const Storecontextprovider = (props) => {
   const [customerinfo, setcustomerinfo] = useState({});
   const [food_list, setfood_list] = useState([]);
 
-  const url = "http://localhost:3000";
+  const url = import.meta.env.VITE_URL;
   const [token, settoken] = useState("");
   const fetchlist = async () => {
     const response = await axios.get(url + "/api/food/list");
@@ -19,7 +19,6 @@ const Storecontextprovider = (props) => {
       {},
       { headers: { token: token } },
     );
-    console.log(response.data.cartdata);
     setcartitem(response.data.cartdata);
   };
 
@@ -29,10 +28,16 @@ const Storecontextprovider = (props) => {
       if (localStorage.getItem("token")) {
         settoken(localStorage.getItem("token"));
         await loadcart(localStorage.getItem("token"));
-      }
-    };
+        let  newurl =url+ "/api/user/getemail";
+          const response = await axios.get(newurl, {
+            headers: { token: localStorage.getItem("token") },
+          });
+          setcustomerinfo(response.data.email[0].email);
+    
+  }
+}
     load();
-  }, []);
+  }, [token]);
   const addtocart = async (itemid, price,name) => {
     if (!cartitem[itemid]) {
       setcartitem((prev) => ({
@@ -75,7 +80,7 @@ const Storecontextprovider = (props) => {
   const gettotalamt = () => {
     let totalamt = 0;
     for (const item in cartitem) {
-      if (cartitem[item].quantity > 0) {
+      if (food_list&& cartitem[item].quantity > 0) {
         let iteminfo = food_list.find((product) => product.id == item);
         totalamt += iteminfo.price * cartitem[iteminfo.id].quantity;
       }
