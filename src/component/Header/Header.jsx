@@ -8,7 +8,7 @@ const Header = () => {
 backgroundSize:'contain',
 backgroundRepeat: `no-repeat`}}  >
         <div className="header-content">
-          <h3>Order your favourite food here</h3>
+          <h3>Just satisfy your appetite with Appetite.</h3>
           <p>
             Choose from a diverse menu featuring a delectable array of dishes
             crafted with the finest ingridents and culinary expertise.Our
