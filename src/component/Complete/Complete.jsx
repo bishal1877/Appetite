@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./complete.css";
 
 const Complete = () => {
+  let backurl=import.meta.env.VITE_URL
   const [status, setStatus] = useState(null);
   const [paymentIntentId, setPaymentIntentId] = useState("");
   const [paymentStatus, setPaymentStatus] = useState("");
@@ -50,7 +51,7 @@ const Complete = () => {
     const urlParams = new URLSearchParams(queryString);
     const sessionId = urlParams.get("session_id");
 
-    fetch(`http://localhost:3000/session-status?session_id=${sessionId}`)
+    fetch(`${backurl}/session-status?session_id=${sessionId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
