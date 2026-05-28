@@ -32,6 +32,7 @@ console.log(newurl)
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        width:"100%",
         borderRadius: "5px",
         flexDirection: "column",
         padding: "10px",
@@ -40,17 +41,7 @@ console.log(newurl)
     >
       <p className="title">Delivery Information</p>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: "5%",
-          width: "100%",
-          borderRadius: "7px",
-          boxShadow:
-            "0px 0px 0px 0.5px rgba(50, 50, 93, 0.1), 0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07)",
-          padding: "20px",
-        }}
+        className="ordercontainer"
       >
         <form
           className="order"

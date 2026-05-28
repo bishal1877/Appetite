@@ -1,12 +1,22 @@
 .order
 {
-    display: flex;
-    align-items: start;
-    gap: 12vw;
+width: auto;
     margin-top: 20px;
 margin-bottom: 20px;    
 }
-
+.ordercontainer
+{
+       display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5%;
+          width: 100%;
+          border-radius: 7px;
+          box-shadow:
+            0px 0px 0px 0.5px rgba(50, 50, 93, 0.1), 0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
+          padding: 20px;
+       
+}
 .order-left
 {
     width: 100%;
@@ -36,6 +46,7 @@ margin-bottom: 20px;
 {
     display: flex;
     gap: 10px;
+    width: 100%;
 }
 
 .order-right
@@ -73,6 +84,11 @@ margin-top: 30px;
     {
         width: 100%;
     }
+.ordercontainer
+{
+    display: flex;
+    flex-direction: column;
+}
 }
 
 button
